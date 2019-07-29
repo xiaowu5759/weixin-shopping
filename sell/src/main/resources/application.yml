@@ -1,0 +1,9 @@
+#
+#logging:
+##  pattern:
+#    # 日志格式，只是在控制台上
+##    console: "%d - %msg%n"
+##  path:  ../log
+#  file: ../log/sell.log
+#  level:
+#    com.xiaowu.sell.SellApplication: debug
