@@ -1,17 +1,22 @@
-#
 #logging:
 ##  pattern:
-#    # 日志格式，只是在控制台上
+#    # 鏃ュ織鏍煎紡锛屽彧鏄湪鎺у埗鍙颁笂
 ##    console: "%d - %msg%n"
 ##  path:  ../log
 #  file: ../log/sell.log
 #  level:
 #    com.xiaowu.sell.SellApplication: debug
+
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://127.0.0.1:3306/sell?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
   jpa:
     show-sql: true
+server:
+  servlet:
+    context-path: /sell
+  port: 7070
