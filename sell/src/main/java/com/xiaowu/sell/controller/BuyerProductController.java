@@ -2,8 +2,8 @@ package com.xiaowu.sell.controller;
 
 import com.xiaowu.sell.entity.ProductCategory;
 import com.xiaowu.sell.entity.ProductInfo;
-import com.xiaowu.sell.service.ProductCategoryService;
-import com.xiaowu.sell.service.ProductInfoService;
+import com.xiaowu.sell.service.CategoryService;
+import com.xiaowu.sell.service.ProductService;
 import com.xiaowu.sell.util.ResultVOUtils;
 import com.xiaowu.sell.vo.ProductInfoVO;
 import com.xiaowu.sell.vo.ProductVO;
@@ -28,15 +28,15 @@ import java.util.stream.Collectors;
 public class BuyerProductController {
 
 	@Autowired
-	private ProductInfoService productInfoService;
+	private ProductService productService;
 
 	@Autowired
-	private ProductCategoryService productCategoryService;
+	private CategoryService productCategoryService;
 
 	@GetMapping("/list")
 	public ResultVO getBuyerProductList(){
 		// 1. 查询所有上架商品
-		List<ProductInfo> productInfos = productInfoService.listUpAll();
+		List<ProductInfo> productInfos = productService.listUpAll();
 
 		// 2. 查询类目（一次性查询）
 //		List<Integer> cateTypeList = new ArrayList<>();

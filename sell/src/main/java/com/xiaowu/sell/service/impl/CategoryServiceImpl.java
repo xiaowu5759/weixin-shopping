@@ -2,7 +2,7 @@ package com.xiaowu.sell.service.impl;
 
 import com.xiaowu.sell.dao.ProductCategoryMapper;
 import com.xiaowu.sell.entity.ProductCategory;
-import com.xiaowu.sell.service.ProductCategoryService;
+import com.xiaowu.sell.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2019/7/30 11:11
  */
 @Service
-public class ProductCategoryServiceImpl implements ProductCategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	private ProductCategoryMapper productCategoryMapper;

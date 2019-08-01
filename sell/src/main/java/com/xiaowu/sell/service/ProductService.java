@@ -1,5 +1,6 @@
 package com.xiaowu.sell.service;
 
+import com.xiaowu.sell.dto.CartDTO;
 import com.xiaowu.sell.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +11,7 @@ import java.util.List;
  * @author XiaoWu
  * @date 2019/7/30 14:48
  */
-public interface ProductInfoService {
+public interface ProductService {
 
 	ProductInfo getOne(String productId);
 
@@ -25,6 +26,8 @@ public interface ProductInfoService {
 	ProductInfo save(ProductInfo productInfo);
 
 	// 加库存
+	void increaseStock(List<CartDTO> cartDTOList);
 
 	// 减库存
+	void decreaseStock(List<CartDTO> cartDTOList);
 }

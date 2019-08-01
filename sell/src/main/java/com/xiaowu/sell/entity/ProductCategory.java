@@ -14,7 +14,8 @@ import javax.persistence.Id;
  */
 @Data
 @Entity
-@DynamicUpdate
+// 不影响数据库的默认值
+//@DynamicUpdate
 public class ProductCategory {
 
 	// 类目id

@@ -8,7 +8,7 @@ import java.util.List;
  * @author XiaoWu
  * @date 2019/7/30 11:03
  */
-public interface ProductCategoryService {
+public interface CategoryService {
 
 	ProductCategory getOne(Integer categoryId);
 
