@@ -13,7 +13,7 @@ public interface OrderService {
 	OrderDTO createOrder(OrderDTO orderDTO);
 
 	// 查询单个订单
-	OrderDTO getOne(String orderId);
+	OrderDTO getOrder(String orderId);
 
 	// 查询订单列表
 	Page<OrderDTO> listOrder(String buyerOpenid, Pageable pageable);

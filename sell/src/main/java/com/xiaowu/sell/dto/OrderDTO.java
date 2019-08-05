@@ -1,11 +1,15 @@
 package com.xiaowu.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xiaowu.sell.entity.OrderDetail;
 import com.xiaowu.sell.enums.OrderStatusEnum;
 import com.xiaowu.sell.enums.PayStatusEnum;
+import com.xiaowu.sell.util.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +18,8 @@ import java.util.List;
  * @date 2019/8/1 14:35
  */
 @Data
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
 	private String orderId;
@@ -40,9 +46,11 @@ public class OrderDTO {
 	private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
 	// 创建时间
+	@JsonSerialize(using = Date2LongSerializer.class)
 	private Date createTime;
 
 	// 更新时间
+	@JsonSerialize(using = Date2LongSerializer.class)
 	private Date updateTime;
 
 	private List<OrderDetail> orderDetailList;
