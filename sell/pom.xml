@@ -62,6 +62,12 @@
             <artifactId>gson</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>3.4.9.B</version>
+        </dependency>
+
     </dependencies>
 
     <build>

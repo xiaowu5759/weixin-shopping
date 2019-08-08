@@ -23,5 +23,17 @@ spring:
 server:
   servlet:
     context-path: /sell
-  port: 7070
+  port: 9090
 
+wechat:
+#  mpAppId: wxd898fcb01713c658
+#  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+#  mpAppId: wx557a6ea91652f1d1
+#  mpAppSecret: 338677634e7f31c11add1cc3314b2a6c
+#  mpAppId: wx339336302995faa2
+#  mpAppSecret: e0a139c7e3e617763810e6708b7d0d9c
+
+# pinzhi365 测试
+# 需要映射到80端口
+  mpAppId: wxd99431bbff8305a0
+  mpAppSecret: 60f78681d063590a469f1b297feff3c4
