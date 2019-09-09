@@ -22,6 +22,10 @@ public enum ResultEnum {
 	CART_EMPTY(18,"购物为空"),
 	ORDER_OWNER_ERROR(19, "该订单不属于当前用户"),
 	WECHAT_MP_ERROR(20,"微信公众账号方面错误"),
+
+	SUCCESS(20000,"success"),
+	PARAM_EXCEPTION(40000,"入参异常"),
+	SYSTEM_EXCEPTION(50000,"系统异常")
 	;
 
 	private Integer code;

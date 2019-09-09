@@ -34,7 +34,7 @@ public class WechatController {
 	public String getWechatAuthorize(@RequestParam("returnUrl") String returnUrl){
 		// 1. 配置
 		// 2. 调用方法
-		String url = "http://www.pinzhi365.com/sell/wechat/userInfo";
+		String url = "http://simbalink.mynatapp.cc/sell/wechat/userInfo";
 		// WxConsts.OAuth2Scope.SNSAPI_BASE
 		// snsapi_login
 		String redirectUrl = wxMpService.oauth2buildAuthorizationUrl(url,WxConsts.OAuth2Scope.SNSAPI_BASE , URLEncoder.encode(returnUrl));

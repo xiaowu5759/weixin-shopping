@@ -39,9 +39,9 @@ public class BuyerOrderController {
 	@Autowired
 	private BuyerService buyerService;
 
-	//创建订单
 	// 这是校验表单的和json数据是否一致呢
 	@PostMapping("/create")
+	//创建订单
 	public ResultVO<Map<String,String>> postBuyerOrder(@Valid OrderForm orderForm, BindingResult bindingResult){
 		if(bindingResult.hasErrors()){
 			log.error("【创建订单】参数不正确,orderForm=[{}]", orderForm);
