@@ -34,6 +34,8 @@ public class WechatController {
 	public String getWechatAuthorize(@RequestParam("returnUrl") String returnUrl){
 		// 1. 配置
 		// 2. 调用方法
+
+		// 这也是写在配置文件里面的
 		String url = "http://simbalink.mynatapp.cc/sell/wechat/userInfo";
 		// WxConsts.OAuth2Scope.SNSAPI_BASE
 		// snsapi_login
@@ -49,6 +51,7 @@ public class WechatController {
 			wxMpOAuth2AccessToken = wxMpService.oauth2getAccessToken(code);
 		} catch (WxErrorException e) {
 			log.error("【微信网页授权】{}", e);
+			// 将错误向上抛
 			throw new SellException(ResultEnum.WECHAT_MP_ERROR.getCode(),e.getError().getErrorMsg());
 		}
 		String openId = wxMpOAuth2AccessToken.getOpenId();

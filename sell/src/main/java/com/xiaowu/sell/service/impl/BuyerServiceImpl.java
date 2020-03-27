@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * 买家
  * @author XiaoWu
  * @date 2019/8/5 12:26
  */
