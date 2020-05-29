@@ -35,7 +35,7 @@ public class WechatController {
 		// 1. 配置
 		// 2. 调用方法
 
-		// 这也是写在配置文件里面的
+		// 这也是写在配置文件里面的，微信用户信息的回调地址
 		String url = "http://simbalink.mynatapp.cc/sell/wechat/userInfo";
 		// WxConsts.OAuth2Scope.SNSAPI_BASE
 		// snsapi_login

@@ -7,7 +7,6 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * mp 是公众账号的意思
@@ -18,12 +17,12 @@ import org.springframework.stereotype.Component;
 public class WechatMpConfig {
 
 	@Autowired
-	private WechatAccountConfig accountConfig;
+	private WechatAccountProperties accountConfig;
 
 	@Bean
 	public WxMpService wxMpService(){
 		WxMpService wxMpService = new WxMpServiceImpl();
-		wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
+		wxMpService.setWxMpConfigStorage(this.wxMpConfigStorage());
 		return wxMpService;
 	}
 

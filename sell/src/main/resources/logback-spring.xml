@@ -2,21 +2,22 @@
 
 <configuration>
 
-    <!-- magenta:洋红 -->
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <!-- boldMagenta:粗红-->
+    <!--boldYellow:粗黄-->
+    <!--boldGreen:粗绿-->
     <!-- cyan:青色 -->
     <!-- white:白色 -->
     <!-- magenta:洋红 -->
 
     <!-- 日志输出格式【控制台】 [%p][%c][%M][%L] -->
-    <!--<property name="logPatternConsoleLog" value="%date{yyyy-MM-dd HH:mm:ss} | %highlight(%p) | %boldYellow(%c) | %M:%boldGreen(%L) | %m%n"/>-->
-    <!--<property name="logPatternConsoleLog" value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>-->
-    <!--<property name="logPatternConsoleLog" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %customcolor(%-5level) %cyan(%logger{15}) - %msg%n"/>-->
-    <!--自制-->
-    <property name="logPatternConsoleLog" value="%white(%date{yyyy-MM-dd HH:mm:ss}) | %highlight(%-5level) | %magenta([%thread]) | %boldYellow(%c) | %M:%boldGreen(%L) | %cyan(%msg%n)"/>
+    <!--<property name="consoleLogPattern" value="%date{yyyy-MM-dd HH:mm:ss} | %highlight(%p) | %boldYellow(%c) | %M:%boldGreen(%L) | %m%n"/>-->
+    <!--<property name="consoleLogPattern" value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>-->
+    <!--<property name="consoleLogPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %customcolor(%-5level) %cyan(%logger{15}) - %msg%n"/>-->
+    <property name="consoleLogPattern" value="%white(%date{yyyy-MM-dd HH:mm:ss}) | %highlight(%-5level) | %magenta([%thread]) | %boldYellow(%c) | %M:%boldGreen(%L) | %cyan(%m%n)"/>
 
     <!-- 日志输出格式【日志文件】 -->
-    <property name="logPattern" value="%date{yyyy-MM-dd HH:mm:ss} | %-5level | [%thread] | %c | %M:%L | %m%n"/>
+    <property name="fileLogPattern" value="%date{yyyy-MM-dd HH:mm:ss} | %-5level | [%thread] | %c | %M:%L | %m%n"/>
 
     <!-- 输出到控制台 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -25,7 +26,7 @@
             <level>INFO</level>
         </filter>
         <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>${logPatternConsoleLog}</pattern>
+            <pattern>${consoleLogPattern}</pattern>
             <!-- 设置字符集 enconder-->
             <!--<charset>UTF-8</charset>-->
         </layout>
@@ -33,7 +34,7 @@
 
     <!-- 输出到文件 -->
     <!-- 时间滚动输出 level为 INFO 日志 -->
-    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 忽略ERROR -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
@@ -41,13 +42,13 @@
             <onMismatch>ACCEPT</onMismatch>
         </filter>
         <encoder>
-            <pattern>${logPattern}</pattern>
+            <pattern>${fileLogPattern}</pattern>
             <charset>UTF-8</charset>
         </encoder>
-        <!--滚动策略-->
+        <!--滚动策略 每天创建一个文件-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 每天日志归档路径以及格式 -->
-            <fileNamePattern>../log/sell/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./log/sell/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -58,18 +59,18 @@
     </appender>
 
     <!-- 时间滚动输出 level为 ERROR 日志 -->
-    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
         <encoder>
-            <pattern>${logPattern}</pattern>
+            <pattern>${fileLogPattern}</pattern>
             <charset>UTF-8</charset>
         </encoder>
-        <!--滚动策略 每天创建一个文件-->
+        <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>../log/sell/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>./log/sell/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -87,35 +88,50 @@
         第二种就是单独给mapper下目录配置debug模式
     -->
     <!--<root level="info">-->
-        <!--<appender-ref ref="CONSOLE"/>-->
-        <!--<appender-ref ref="INFO_FILE"/>-->
-        <!--<appender-ref ref="ERROR_FILE"/>-->
+    <!--<appender-ref ref="CONSOLE"/>-->
+    <!--<appender-ref ref="INFO_FILE"/>-->
+    <!--<appender-ref ref="ERROR_FILE"/>-->
     <!--</root>-->
 
     <!-- 场景设置，开发环境，生产环境，测试环境-->
     <!-- 开发环境：打印控制台-->
     <springProfile name="dev">
         <!-- 项目包中定义为info-->
-        <logger name="com.xiaowu" level="info"/>
+        <logger name="com.xiaowu" level="INFO"/>
+        <logger name="com.xinba.sell.dao" level="DEBUG" />
+        <logger name="io.lettuce.core.protocol" level="ERROR"/>
         <!--
             root节点是必选节点，用来指定最基础的日志输出级别
         -->
         <!-- 整个项目包为info-->
-        <root level="info">
+        <root level="INFO">
             <appender-ref ref="CONSOLE"/>
-            <!--<appender-ref ref="INFO_FILE"/>-->
-            <!--<appender-ref ref="ERROR_FILE"/>-->
+            <!--<appender-ref ref="FILE_INFO"/>-->
+            <!--<appender-ref ref="FILE_ERROR"/>-->
+        </root>
+    </springProfile>
+
+    <!-- 测试环境：全信息打印-->
+    <springProfile name="test">
+        <logger name="com.xiaowu" level="INFO"/>
+        <logger name="com.xinba.sell.dao" level="DEBUG" />
+        <logger name="io.lettuce.core.protocol" level="ERROR"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE_INFO"/>
+            <appender-ref ref="FILE_ERROR"/>
         </root>
     </springProfile>
 
     <!-- 生产环境：输出到文件中-->
     <springProfile name="prod">
-        <logger name="com.xiaowu" level="info"/>
+        <logger name="com.xiaowu" level="INFO"/>
 
-        <root level="warn">
+        <root level="INFO">
             <!--<appender-ref ref="CONSOLE"/>-->
-            <appender-ref ref="INFO_FILE"/>
-            <appender-ref ref="ERROR_FILE"/>
+            <appender-ref ref="FILE_INFO"/>
+            <appender-ref ref="FILE_ERROR"/>
         </root>
     </springProfile>
 

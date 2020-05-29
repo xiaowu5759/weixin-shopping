@@ -1,0 +1,42 @@
+wechat:
+  #  mpAppId: wxd898fcb01713c658
+  #  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+  #  mpAppId: wx557a6ea91652f1d1
+  #  mpAppSecret: 338677634e7f31c11add1cc3314b2a6c
+  #  mpAppId: wx339336302995faa2
+  #  mpAppSecret: e0a139c7e3e617763810e6708b7d0d9c
+
+  # pinzhi365 测试
+  # 需要映射到80端口，scope权限不够
+  #  mpAppId: wxd99431bbff8305a0
+  #  mpAppSecret: 60f78681d063590a469f1b297feff3c4
+
+  # 微信测试平台
+  mpAppId: wxc9fcb793d079e933
+  mpAppSecret: 8e971ac23cdd81b73a3ba1abcef70716
+  mchId: asdasdasdasdasd
+  mchKey: adasdasdasdasdasd
+  keyPath: asdasdasdasdasdasd
+
+  # simba
+
+  # 异步通知地址非常重要
+  notifyUrl: http://simbalink.mynatapp.cc/sell/pay/notify
+
+server:
+  servlet:
+    context-path: /sell
+  port: 7070
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/sell?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
+  application:
+    name: xiaowu-sell

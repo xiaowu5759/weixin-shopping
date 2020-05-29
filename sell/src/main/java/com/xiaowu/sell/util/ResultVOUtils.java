@@ -10,8 +10,8 @@ import com.xiaowu.sell.vo.ResultVO;
  */
 public class ResultVOUtils {
 
-	public static ResultVO success(Object object){
-		ResultVO resultVO = new ResultVO();
+	public static <T> ResultVO<T> success(T object){
+		ResultVO<T> resultVO = new ResultVO<>();
 		resultVO.setData(object);
 		resultVO.setCode(0);
 		resultVO.setMsg("成功");

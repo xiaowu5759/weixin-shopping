@@ -1,4 +1,4 @@
-package com.xiaowu.sell.controller;
+package com.xiaowu.sell.controller.handler;
 
 import com.xiaowu.sell.enums.ResultEnum;
 import com.xiaowu.sell.exception.SellException;
