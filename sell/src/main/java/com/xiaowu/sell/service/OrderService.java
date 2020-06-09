@@ -1,6 +1,7 @@
 package com.xiaowu.sell.service;
 
 import com.xiaowu.sell.dto.OrderDTO;
+import com.xiaowu.sell.exception.SellException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,6 +18,9 @@ public interface OrderService {
 
 	// 查询订单列表
 	Page<OrderDTO> listOrder(String buyerOpenid, Pageable pageable);
+
+	// 分页查询所有的订单列表
+	Page<OrderDTO> listAllOrders(Pageable pageable);
 
 	// 取消订单
 	OrderDTO cancelOrder(OrderDTO orderDTO);

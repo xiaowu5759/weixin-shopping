@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 /**
  * @author XiaoWu
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 @Data
 @Entity
 // 不影响数据库的默认值
-//@DynamicUpdate
+@DynamicUpdate
 public class ProductCategory {
 
 	// 类目id
@@ -28,6 +29,12 @@ public class ProductCategory {
 
 	// 类目编号
 	private Integer categoryType;
+
+	/** 创建时间 */
+	private Date createTime;
+
+	/** 修改时间 */
+	private Date updateTime;
 
 	public ProductCategory() {
 	}

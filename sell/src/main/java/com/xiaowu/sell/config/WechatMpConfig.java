@@ -7,6 +7,7 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /**
  * mp 是公众账号的意思
@@ -20,6 +21,7 @@ public class WechatMpConfig {
 	private WechatAccountProperties accountConfig;
 
 	@Bean
+	@Primary
 	public WxMpService wxMpService(){
 		WxMpService wxMpService = new WxMpServiceImpl();
 		wxMpService.setWxMpConfigStorage(this.wxMpConfigStorage());
@@ -31,7 +33,7 @@ public class WechatMpConfig {
 		WxMpConfigStorage wxMpConfigStorage = new WxMpInMemoryConfigStorage();
 		// 配置从配置文件中读取
 		((WxMpInMemoryConfigStorage) wxMpConfigStorage).setAppId(accountConfig.getMpAppId());
-		((WxMpInMemoryConfigStorage) wxMpConfigStorage).setSecret(accountConfig.getMpAppId());
+		((WxMpInMemoryConfigStorage) wxMpConfigStorage).setSecret(accountConfig.getMpAppSecret());
 		return wxMpConfigStorage;
 	}
 }

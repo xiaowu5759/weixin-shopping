@@ -6,7 +6,6 @@ import com.lly835.bestpay.model.PayResponse;
 import com.lly835.bestpay.model.RefundRequest;
 import com.lly835.bestpay.model.RefundResponse;
 import com.lly835.bestpay.service.BestPayService;
-import com.lly835.bestpay.service.impl.BestPayServiceImpl;
 import com.xiaowu.sell.dto.OrderDTO;
 import com.xiaowu.sell.enums.ResultEnum;
 import com.xiaowu.sell.exception.SellException;
@@ -38,7 +37,7 @@ public class PayServiceImpl implements PayService {
     @Override
     public PayResponse create(OrderDTO orderDTO) {
         /**这个sdk没有依赖spring,具有良好的可移植性
-         * 但是我们将它注册成 bean
+         * 这里我们将它注册成 bean
          * */
         PayRequest payRequest = new PayRequest();
         /** orderId */

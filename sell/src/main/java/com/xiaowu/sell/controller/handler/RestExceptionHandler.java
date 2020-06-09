@@ -1,8 +1,6 @@
 package com.xiaowu.sell.controller.handler;
 
-import com.xiaowu.sell.enums.ResultEnum;
 import com.xiaowu.sell.exception.SellException;
-import com.xiaowu.sell.util.ExceptionUtils;
 import com.xiaowu.sell.util.ResultVOUtils;
 import com.xiaowu.sell.vo.ResultVO;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
+public class RestExceptionHandler {
 	// 业务异常处理
 	@ExceptionHandler(value = SellException.class)
 	public ResultVO sellExceptionHandler(SellException e){

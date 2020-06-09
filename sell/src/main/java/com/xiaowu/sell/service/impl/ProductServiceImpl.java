@@ -27,7 +27,11 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductInfo getOne(String productId) {
-		return productInfoMapper.findByProductId(productId);
+		ProductInfo product = productInfoMapper.findByProductId(productId);
+		if(product == null){
+			throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+		}
+		return product;
 	}
 
 	@Override
@@ -74,5 +78,35 @@ public class ProductServiceImpl implements ProductService {
 			productInfo.setProductStock(result);
 			productInfoMapper.save(productInfo);
 		}
+	}
+
+	@Override
+	public ProductInfo onSale(String productId) {
+		ProductInfo product = productInfoMapper.findByProductId(productId);
+		if(product == null){
+			throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+		}
+		// 判断商品状态
+		if(ProductStatusEnum.UP.getCode().equals(product.getProductStatus())){
+			throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+		}
+		product.setProductStatus(ProductStatusEnum.UP.getCode());
+		// 更新
+		return productInfoMapper.save(product);
+	}
+
+	@Override
+	public ProductInfo offSale(String productId) {
+		ProductInfo product = productInfoMapper.findByProductId(productId);
+		if(product == null){
+			throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+		}
+		// 判断商品状态
+		if(ProductStatusEnum.DOWN.getCode().equals(product.getProductStatus())){
+			throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+		}
+		product.setProductStatus(ProductStatusEnum.DOWN.getCode());
+		// 更新
+		return productInfoMapper.save(product);
 	}
 }

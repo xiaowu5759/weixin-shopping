@@ -1,15 +1,15 @@
 package com.xiaowu.sell.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xiaowu.sell.entity.OrderDetail;
 import com.xiaowu.sell.enums.OrderStatusEnum;
 import com.xiaowu.sell.enums.PayStatusEnum;
+import com.xiaowu.sell.util.EnumUtils;
 import com.xiaowu.sell.util.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,4 +54,13 @@ public class OrderDTO {
 	private Date updateTime;
 
 	private List<OrderDetail> orderDetailList;
+
+	@JsonIgnore
+	public OrderStatusEnum getOrderStatusEnum(){
+		return EnumUtils.getByCode(orderStatus, OrderStatusEnum.class);
+	}
+
+	public PayStatusEnum getPayStatusEnum(){
+		return EnumUtils.getByCode(payStatus, PayStatusEnum.class);
+	}
 }

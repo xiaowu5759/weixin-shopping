@@ -64,6 +64,5 @@ public class BuyerProductController {
 		}
 
 		return ResultVOUtils.success(productVOList);
-
 	}
 }

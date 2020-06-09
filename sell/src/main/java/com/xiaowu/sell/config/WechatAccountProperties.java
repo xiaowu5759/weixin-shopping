@@ -1,6 +1,5 @@
 package com.xiaowu.sell.config;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,19 +19,19 @@ public class WechatAccountProperties {
 
 	private String mpAppSecret;
 
-	/**
-	 * 商户号
-	 */
+	/** 微信开放平台appid */
+	private String openAppId;
+
+	/** 微信开放平台appsecret */
+	private String openAppSecret;
+
+	/** 商户号 */
 	private String mchId;
 
-	/**
-	 * 商户密钥
-	 */
+	/** 商户密钥 */
 	private String mchKey;
 
-	/**
-	 * 商户证书路径
-	 */
+	/** 商户证书路径 */
 	private String keyPath;
 
 	private String notifyUrl;

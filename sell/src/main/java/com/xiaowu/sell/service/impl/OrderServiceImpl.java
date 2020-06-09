@@ -13,13 +13,12 @@ import com.xiaowu.sell.enums.PayStatusEnum;
 import com.xiaowu.sell.enums.ResultEnum;
 import com.xiaowu.sell.exception.SellException;
 import com.xiaowu.sell.service.OrderService;
+import com.xiaowu.sell.service.PayService;
 import com.xiaowu.sell.service.ProductService;
 import com.xiaowu.sell.util.KeyUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +29,6 @@ import org.springframework.util.CollectionUtils;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +48,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderMasterMapper orderMasterMapper;
+
+	@Autowired
+	private PayService payService;
 
 	@Override
 	public OrderDTO createOrder(OrderDTO orderDTO) {
@@ -96,7 +97,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderDTO getOrder(String orderId) {
+	public OrderDTO getOrder(String orderId){
 		OrderMaster orderMaster = orderMasterMapper.findByOrderId(orderId);
 		if (orderMaster == null
 				) {
@@ -117,8 +118,15 @@ public class OrderServiceImpl implements OrderService {
 	public Page<OrderDTO> listOrder(String buyerOpenid, Pageable pageable) {
 		Page<OrderMaster> orderMasterPage = orderMasterMapper.findByBuyerOpenid(buyerOpenid, pageable);
 		List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
-		Page<OrderDTO> orderDTOPage = new PageImpl<OrderDTO>(orderDTOList,pageable,orderMasterPage.getTotalElements());
+		Page<OrderDTO> orderDTOPage = new PageImpl<>(orderDTOList,pageable,orderMasterPage.getTotalElements());
 		return orderDTOPage;
+	}
+
+	@Override
+	public Page<OrderDTO> listAllOrders(Pageable pageable) {
+		Page<OrderMaster> orderMasters = orderMasterMapper.findAll(pageable);
+		List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasters.getContent());
+		return new PageImpl<>(orderDTOList, pageable, orderMasters.getTotalElements());
 	}
 
 	@Override
@@ -153,6 +161,7 @@ public class OrderServiceImpl implements OrderService {
 		// 4. 如果已支付，需要退款
 		if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
 			// todo 退款问题
+			payService.refund(orderDTO);
 		}
 		return orderDTO;
 	}
