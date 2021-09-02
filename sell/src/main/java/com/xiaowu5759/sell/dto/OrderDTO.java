@@ -6,7 +6,7 @@ import com.xiaowu5759.sell.entity.OrderDetail;
 import com.xiaowu5759.sell.enums.OrderStatusEnum;
 import com.xiaowu5759.sell.enums.PayStatusEnum;
 import com.xiaowu5759.sell.util.EnumUtils;
-import com.xiaowu5759.sell.util.serializer.Date2LongSerializer;
+import com.xiaowu5759.sell.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;

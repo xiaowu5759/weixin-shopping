@@ -1,4 +1,4 @@
-package com.xiaowu5759.sell.controller.handler;
+package com.xiaowu5759.sell.handler;
 
 import com.xiaowu5759.sell.config.ProjectUrlProperties;
 import com.xiaowu5759.sell.exception.SellerAuthorizeException;
