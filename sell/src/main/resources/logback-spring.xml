@@ -48,7 +48,7 @@
         <!--滚动策略 每天创建一个文件-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 每天日志归档路径以及格式 -->
-            <fileNamePattern>../log/sell/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>../logs/sell/info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -70,7 +70,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>../log/sell/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>../logs/sell/error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>100MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -97,7 +97,7 @@
     <!-- 开发环境：打印控制台-->
     <springProfile name="dev">
         <!-- 项目包中定义为info-->
-        <logger name="com.xiaowu" level="INFO"/>
+        <logger name="com.xiaowu5759" level="INFO"/>
         <logger name="com.xinba.sell.dao" level="DEBUG" />
         <logger name="io.lettuce.core.protocol" level="ERROR"/>
         <!--
@@ -113,7 +113,7 @@
 
     <!-- 测试环境：全信息打印-->
     <springProfile name="test">
-        <logger name="com.xiaowu" level="INFO"/>
+        <logger name="com.xiaowu5759" level="INFO"/>
         <logger name="com.xinba.sell.dao" level="DEBUG" />
         <logger name="io.lettuce.core.protocol" level="ERROR"/>
 
@@ -126,7 +126,7 @@
 
     <!-- 生产环境：输出到文件中-->
     <springProfile name="prod">
-        <logger name="com.xiaowu" level="INFO"/>
+        <logger name="com.xiaowu5759" level="INFO"/>
         <logger name="com.xinba.sell.dao" level="DEBUG" />
         <logger name="io.lettuce.core.protocol" level="ERROR"/>
 
