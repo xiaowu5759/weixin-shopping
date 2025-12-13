@@ -1,6 +1,9 @@
 ### 项目特殊 ###
 log/
 test/
+.DS_Store
+**/.DS_Store
+.DS_Store?
 
 ### springboot ###
 HELP.md
